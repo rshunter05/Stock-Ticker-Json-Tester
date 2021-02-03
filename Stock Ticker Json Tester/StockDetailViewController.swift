@@ -12,7 +12,7 @@ import Charts
 class StockDetailViewController: UIViewController {
     
     
-    @IBOutlet var chart: CandleStickChartView!
+    @IBOutlet var chart: LineChartView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     
@@ -21,13 +21,13 @@ class StockDetailViewController: UIViewController {
     var stockData: Stock?
     
     //candle arrays
-    var open: [Double] = []
-    var low: [Double] = []
-    var high: [Double] = []
+//    var open: [Double] = []
+//    var low: [Double] = []
+//    var high: [Double] = []
     var close: [Double] = []
     
     //Chart Data
-    var chart1Data: [CandleChartDataEntry] = []
+    var chart1Data: [ChartDataEntry] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +54,44 @@ class StockDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        getCandleData()
+        getLineData()  //starts the process of building the chart
     }
     
+    //sets all the parameters for the line chart
+    func setLineChartParameters(){
+        let set = LineChartDataSet(entries: chart1Data, label: "Past Closes")
+        set.drawCirclesEnabled = false
+        set.lineWidth = 1
+        set.setColor(.red)
+        set.drawVerticalHighlightIndicatorEnabled = false
+        set.drawValuesEnabled = false
+        
+        let data = LineChartData(dataSet: set)
+        data.setDrawValues(false)
+        chart.data = data
+        chart.backgroundColor = .black
+        chart.leftAxis.enabled = false
+        chart.legend.textColor = .white
+        chart.legend.enabled = false
+        chart.drawGridBackgroundEnabled = false
+        chart.chartDescription?.text = "Past \(close.count) Day's Closes"
+        chart.chartDescription?.textColor = .white
+        chart.chartDescription?.font = UIFont.systemFont(ofSize: 14)
+        
+        let yAxis = chart.rightAxis
+        yAxis.labelFont = .boldSystemFont(ofSize: 12)
+        yAxis.labelTextColor = .white
+        yAxis.axisLineColor = .white
+        yAxis.gridColor = .black
+        
+        let xAxis = chart.xAxis
+        xAxis.labelFont = .boldSystemFont(ofSize: 12)
+        xAxis.labelTextColor = .white
+        xAxis.axisLineColor = .white
+        xAxis.labelPosition = .bottom
+        xAxis.gridColor = .black
+        
+    }
     
     //Set's Chart's view parameters
     func setChartParameters(){
@@ -82,7 +116,7 @@ class StockDetailViewController: UIViewController {
         chart.legend.textColor = .white
         chart.legend.enabled = false
         chart.drawGridBackgroundEnabled = false
-        chart.chartDescription?.text = "Past \(high.count) Day's Candles"
+        chart.chartDescription?.text = "Past \(close.count) Day's Candles"
         chart.chartDescription?.textColor = .white
         chart.chartDescription?.font = UIFont.systemFont(ofSize: 14)
     
@@ -107,7 +141,7 @@ class StockDetailViewController: UIViewController {
         print(entry)
     }
     
-    func getCandleData(){
+    func getLineData(){
         //get current date
         let currentDate = NSDate()
         let endUnixTime = Int(currentDate.timeIntervalSince1970)
@@ -118,7 +152,7 @@ class StockDetailViewController: UIViewController {
         
         
         guard let stockData = stockData else {
-            print("stockData = null in getCandleData()")
+            print("stockData = null in getLineData()")
             return
         }
         
@@ -131,7 +165,7 @@ class StockDetailViewController: UIViewController {
         print(urlString)
         
         guard let url = URL(string: urlString) else {
-            print("Bad URL in getCandles()")
+            print("Bad URL in getLineData()")
             return
         }
         
@@ -139,32 +173,25 @@ class StockDetailViewController: UIViewController {
             //.shared.dataTask(with: url){ (data, response, error) in
             
             guard let data = data else {
-                print("Bad data in getCandles()")
+                print("Bad data in getLineData()")
                 return
             }
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as AnyObject
                 
-                if let open = json["o"] as? [Double],
-                   let low = json["l"] as? [Double],
-                   let high = json["h"] as? [Double],
-                   let close = json["c"] as? [Double]{
-                    self.open = open
-                    self.low = low
-                    self.high = high
+                if let close = json["c"] as? [Double]{
                     self.close = close
-                    
                 }
                 
-                
-                print("JSON success in getCandles()")
-                self.setChart1Data()
+                print("JSON success in getLineData()")
+                self.setLineChartData()
                 DispatchQueue.main.async {
-                    self.setChartParameters()
+                    self.setLineChartParameters()
                 }
+                
             }
             catch {
-                print("JSON failure in getCandles()")
+                print("JSON failure in getLineData()")
             }
             
         }.resume()
@@ -172,17 +199,106 @@ class StockDetailViewController: UIViewController {
     
     
     
-    func setChart1Data() {
+    func setLineChartData() {
         
-        let count = high.count
+        let count = close.count
         
-        for (index, _) in high.enumerated() {
-            chart1Data.append(CandleChartDataEntry(x: Double(index - count), shadowH: high[index], shadowL: low[index], open: open[index], close: close[index]))
-            
-            print("o: \(open[index]) c: \(close[index]) h:\(high[index]) l:\(low[index])")
+        for (index, _) in close.enumerated() {
+            chart1Data.append(ChartDataEntry(x: Double(index - count), y: close[index]))
+            print(close[index])
         }
         
     }
+    
+    /*
+     
+     BELOW
+     
+     IS
+     
+     NO
+     
+     LONGER
+     
+     USED
+     
+     */
+//    func getCandleData1(){
+//        //get current date
+//        let currentDate = NSDate()
+//        let endUnixTime = Int(currentDate.timeIntervalSince1970)
+//        let startUnitTime = endUnixTime - 90*24*60*60
+//
+//        print("Start Time = \(startUnitTime)")
+//        print("  End time = \(endUnixTime)")
+//
+//
+//        guard let stockData = stockData else {
+//            print("stockData = null in getCandleData()")
+//            return
+//        }
+//
+//        let symbol = stockData.symbol
+//
+//        let resolution = "D"
+//
+//        let urlString =  "https://finnhub.io/api/v1/stock/candle?symbol=\(symbol)&resolution=\(resolution)&from=\(startUnitTime)&to=\(endUnixTime)&token=c02icuf48v6vhdkgvlc0"
+//
+//        print(urlString)
+//
+//        guard let url = URL(string: urlString) else {
+//            print("Bad URL in getCandles()")
+//            return
+//        }
+//
+//        URLSession.shared.dataTask(with: url){ (data, response, error) in
+//            //.shared.dataTask(with: url){ (data, response, error) in
+//
+//            guard let data = data else {
+//                print("Bad data in getCandles()")
+//                return
+//            }
+//            do {
+//                let json = try JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+//
+//                if let open = json["o"] as? [Double],
+//                   let low = json["l"] as? [Double],
+//                   let high = json["h"] as? [Double],
+//                   let close = json["c"] as? [Double]{
+//                    self.open = open
+//                    self.low = low
+//                    self.high = high
+//                    self.close = close
+//
+//                }
+//
+//
+//                print("JSON success in getCandles()")
+//                self.setChart1Data()
+//                DispatchQueue.main.async {
+//                    self.setChartParameters()
+//                }
+//            }
+//            catch {
+//                print("JSON failure in getCandles()")
+//            }
+//
+//        }.resume()
+//    }
+//
+//
+//
+//    func setChart1Data() {
+//
+//        let count = high.count
+//
+//        for (index, _) in high.enumerated() {
+//            chart1Data.append(CandleChartDataEntry(x: Double(index - count), shadowH: high[index], shadowL: low[index], open: open[index], close: close[index]))
+//
+//            print("o: \(open[index]) c: \(close[index]) h:\(high[index]) l:\(low[index])")
+//        }
+//
+//    }
     
     
     
