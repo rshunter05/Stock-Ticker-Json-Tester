@@ -71,6 +71,7 @@ class StockDetailViewController: UIViewController {
         chart.data = data
         chart.backgroundColor = .black
         chart.leftAxis.enabled = false
+        chart.legend.textColor = .white
         chart.legend.enabled = false
         chart.drawGridBackgroundEnabled = false
         chart.chartDescription?.text = "Past \(close.count) Day's Closes"
