@@ -288,7 +288,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" restorationIdentifier="Stock Candle Chart" translatesAutoresizingMaskIntoConstraints="NO" id="FJ0-fl-52O" customClass="CandleStickChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" restorationIdentifier="Stock Candle Chart" translatesAutoresizingMaskIntoConstraints="NO" id="FJ0-fl-52O" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="20" y="99.5" width="374" height="199.5"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
