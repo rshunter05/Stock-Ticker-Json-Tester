@@ -73,7 +73,7 @@ class AddStockTableViewController: UITableViewController, UISearchBarDelegate {
         self.dataTask = session.dataTask(with: url){ (data, response, error) in
             
             //check if data is NOT nil (something was sent back)
-            guard let data = data else {print("Bad Data"); return}
+            guard let data = data else {print("Bad Data: " + str); return}
             
             //parseJSON
             do {

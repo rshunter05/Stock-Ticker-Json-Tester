@@ -200,7 +200,6 @@ class MainViewController: UIViewController, UITableViewDelegate,  UITableViewDat
             //this will run AFTER the data task is finished
             //check if data is NOT nil (something was sent back)
             guard let data = data else {print("Bad Data"); return}
-            
             do {
                 
                 /*
