@@ -10,7 +10,7 @@ import Foundation
 
 class Stock: Equatable, Comparable {
     
-    //about the stock in general
+    //Generic Stock Info
     var name = ""
     var symbol = ""
     var exchange = ""
