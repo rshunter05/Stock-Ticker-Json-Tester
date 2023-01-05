@@ -3,6 +3,7 @@
 This is an example iPhone Stock Ticker for the Mobile Apps Class.  The purpose was to teach the following concepts.
 
 - Interacting with live data from a REST API
+- Persistence in Swift
 - Using Alert Controllers
 - Manipulating UITableView and UITableViewController objects
 - Using a package dependency of their choice to show stock history
@@ -10,16 +11,23 @@ This is an example iPhone Stock Ticker for the Mobile Apps Class.  The purpose w
 [Source code is here](https://github.com/rshunter05/Stock-Ticker-Json-Tester/tree/main/Stock%20Ticker%20Json%20Tester)
 
 
-## Features
+## App Features
 
 **Main Screen**
-- asdf
+- Today's date
+- List all stock with basic data (color coded)
+- List can be reordered
+- Swipe left on stock to delete
+- tap stock to see more detail
 
 **Search and Add New Stock Screen**
-- asdf
+- Search bar automatically shows results as you type
+- Taping a result brings up aleat asking if you want to add it
+- 
 
 **Stock Detail Screen**
-- asdf
+- Shows graph of closing prices over the past 2 months
+- A few extra details are shown
 
 
 ## Screenshots
