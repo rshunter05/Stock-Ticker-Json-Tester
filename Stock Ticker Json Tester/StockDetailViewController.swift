@@ -74,9 +74,9 @@ class StockDetailViewController: UIViewController {
         chart.legend.textColor = .white
         chart.legend.enabled = false
         chart.drawGridBackgroundEnabled = false
-        chart.chartDescription?.text = "Past \(close.count) Day's Closes"
-        chart.chartDescription?.textColor = .white
-        chart.chartDescription?.font = UIFont.systemFont(ofSize: 14)
+        chart.chartDescription.text = "Past \(close.count) Day's Closes"
+        chart.chartDescription.textColor = .white
+        chart.chartDescription.font = UIFont.systemFont(ofSize: 14)
         
         let yAxis = chart.rightAxis
         yAxis.labelFont = .boldSystemFont(ofSize: 12)
@@ -116,9 +116,9 @@ class StockDetailViewController: UIViewController {
         chart.legend.textColor = .white
         chart.legend.enabled = false
         chart.drawGridBackgroundEnabled = false
-        chart.chartDescription?.text = "Past \(close.count) Day's Candles"
-        chart.chartDescription?.textColor = .white
-        chart.chartDescription?.font = UIFont.systemFont(ofSize: 14)
+        chart.chartDescription.text = "Past \(close.count) Day's Candles"
+        chart.chartDescription.textColor = .white
+        chart.chartDescription.font = UIFont.systemFont(ofSize: 14)
     
         
         let yAxis = chart.rightAxis
