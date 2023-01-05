@@ -6,4 +6,10 @@ This is an example iPhone Stock Ticker for the Mobile Apps Class.  The purpose w
 - Manipulating UITableView and UITableViewController objects
 - Using a package dependency of their choice to show stock history
 
+[Source code is here](https://github.com/rshunter05/Stock-Ticker-Json-Tester/tree/main/Stock%20Ticker%20Json%20Tester)
+
+---
+
+
+
 
