@@ -26,7 +26,7 @@ This is an example iPhone Stock Ticker for the Mobile Apps Class.  The purpose w
 
 **Main Screen**
 
-   ![Main Screen](https://github.com/rshunter05/Stock-Ticker-Json-Tester/blob/main/pics/Screen%20Shot%202023-01-05%20at%209.57.45%20AM.png)
+   ![Main Screen](https://github.com/rshunter05/Stock-Ticker-Json-Tester/blob/main/pics/Screen%20Shot%202023-01-05%20at%209.59.07%20AM.png)
 
 **Search and Add New Stock Screen**
 
