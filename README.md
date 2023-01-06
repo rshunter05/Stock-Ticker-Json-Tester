@@ -42,3 +42,6 @@ This is an example iPhone Stock Ticker for the Mobile Apps Class using XCode and
 **Stock Detail Screen**
 
    ![](https://github.com/rshunter05/Stock-Ticker-Json-Tester/blob/main/pics/Screen%20Shot%202023-01-05%20at%209.59.00%20AM.png)
+   
+**Main StoryBoard**
+   ![](https://github.com/rshunter05/Stock-Ticker-Json-Tester/blob/main/pics/Screen%20Shot%202023-01-06%20at%209.32.21%20AM.png)
