@@ -1,6 +1,6 @@
 # Stock-Ticker-Json-Tester
 
-This is an example iPhone Stock Ticker for the Mobile Apps Class.  The purpose was to teach the following concepts.
+This is an example iPhone Stock Ticker for the Mobile Apps Class using XCode and Swift.  It's essentially a recreation of the iPhone's stock ticker app.  The purpose was to teach the following concepts.
 
 - Interacting with live data from a REST API
 - Persistence in Swift
@@ -23,7 +23,6 @@ This is an example iPhone Stock Ticker for the Mobile Apps Class.  The purpose w
 **Search and Add New Stock Screen**
 - Search bar automatically shows results as you type
 - Taping a result brings up aleat asking if you want to add it
-- 
 
 **Stock Detail Screen**
 - Shows graph of closing prices over the past 2 months
